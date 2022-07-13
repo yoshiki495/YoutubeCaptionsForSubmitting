@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+//以下が追加したプログラム
 let param = location.search;
 console.log(param)
 fetch('https://oudi6xgb04.execute-api.ap-northeast-1.amazonaws.com/default/GetYoutubeInfo/' + param, {method: 'GET', mode: 'cors'})
