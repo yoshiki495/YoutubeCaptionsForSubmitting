@@ -24,3 +24,37 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+let param = location.search;
+console.log(param)
+fetch('https://oudi6xgb04.execute-api.ap-northeast-1.amazonaws.com/default/GetYoutubeInfo/' + param, {method: 'GET', mode: 'cors'})
+.then(res => res.json())
+.then(data => {
+    let textModMsg = document.getElementById('text-mod-msg');
+    textModMsg.textContent = data[0]['text'];
+    console.log(data[0]['text'])
+})
+
+//IFrame Player APIの読み込み
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+//YouTube playerの埋め込み
+var player;
+var youtubeid = param.slice(7)
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		width: '640',
+		height: '360',
+		videoId: youtubeid,
+		playerVars: {
+			autoplay: 1 //自動再生の設定
+		}
+	});
+}
+
+function update(){
+    param.set(param, '?=lPVqtC8bxH0');
+};
