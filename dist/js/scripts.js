@@ -25,7 +25,7 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
-//以下が追加したプログラム
+//YouTube字幕の取得
 let param = location.search;
 console.log(param)
 fetch('https://oudi6xgb04.execute-api.ap-northeast-1.amazonaws.com/default/GetYoutubeInfo/' + param, {method: 'GET', mode: 'cors'})
@@ -36,13 +36,13 @@ fetch('https://oudi6xgb04.execute-api.ap-northeast-1.amazonaws.com/default/GetYo
     console.log(data[0]['text'])
 })
 
-//IFrame Player APIの読み込み
+//YouTube動画情報の取得
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-//YouTube playerの埋め込み
+//YouTube動画の埋め込み
 var player;
 var youtubeid = param.slice(7)
 function onYouTubeIframeAPIReady() {
@@ -56,6 +56,7 @@ function onYouTubeIframeAPIReady() {
 	});
 }
 
+//パラメータの設定
 function update(){
     param.set(param, '?=lPVqtC8bxH0');
 };
